@@ -60,7 +60,7 @@ const Contact = () => {
     {
       icon: <FiPhone size={21} />,
       title: "Call Us",
-      text: "+92 327 9614403",
+      text: "+92  *** ****",
       description: "Mon - Fri, 9AM - 6PM",
     },
     {
@@ -432,7 +432,7 @@ const Contact = () => {
                     </p>
 
                     <p className="mt-1 text-sm font-bold text-white/80">
-                      +92 327 9614403
+                      +92 *** ****
                     </p>
                   </div>
 
