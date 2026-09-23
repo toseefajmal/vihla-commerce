@@ -1,143 +1,137 @@
-
-import React from 'react'
-import { useState, useEffect } from 'react';
+import React, { useEffect, useState } from "react";
+import Card from "./Card";
 
 const ProductApis = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    const [products, setProducts] = useState([]);
-      
-    const handleproducts = async () => {
-        try {
-            const response = await fetch('https://fakestoreapi.com/products');
-            const data = await response.json();
-            setProducts(data);
-        } catch (error) {
-            console.error('Error fetching products:', error);
-        }
-    };
+  const handleProducts = async () => {
+    try {
+      setLoading(true);
 
-    useEffect(() => {
-        handleproducts();
-    }, []);
+      const response = await fetch(
+        "https://fakestoreapi.com/products"
+      );
 
+      if (!response.ok) {
+        throw new Error("Failed to fetch products");
+      }
 
-     
+      const data = await response.json();
+
+      setProducts(data);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    handleProducts();
+  }, []);
+
   return (
-    <div className="min-h-screen bg-slate-950 px-4 py-28 sm:px-6 lg:px-8">
+    <section className="relative min-h-screen overflow-hidden bg-[#050507] px-4 py-24 text-white sm:px-6 lg:px-8">
 
-      {/* Header */}
-      <div className="mx-auto mb-12 max-w-7xl text-center">
+      {/* Background Glow */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
 
-        <span className="mb-4 inline-block rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
-          Our Collection
-        </span>
+        <div className="absolute -left-40 top-10 h-[450px] w-[450px] rounded-full bg-cyan-500/[0.08] blur-[140px]" />
 
-        <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-          Explore Our
-          <span className="ml-2 text-slate-400">
-            Products
-          </span>
-        </h1>
+        <div className="absolute -right-40 top-1/3 h-[450px] w-[450px] rounded-full bg-violet-500/[0.08] blur-[140px]" />
 
-        <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base">
-          Discover premium products carefully selected for quality,
-          style and everyday performance.
-        </p>
+        <div className="absolute bottom-0 left-1/2 h-[350px] w-[500px] -translate-x-1/2 rounded-full bg-blue-500/[0.05] blur-[140px]" />
 
       </div>
 
+      {/* Grid Background */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.025]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)",
+          backgroundSize: "55px 55px",
+        }}
+      />
 
-      {/* Products Grid */}
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="relative z-10 mx-auto max-w-7xl">
 
-        {products.map((product) => (
+        {/* Heading */}
+        <div className="mx-auto mb-12 max-w-3xl text-center">
 
-          <div
-            key={product.id}
-            className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-4 shadow-xl shadow-black/10 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.07]"
-          >
+          <span className="mb-5 inline-flex items-center rounded-full border border-cyan-400/20 bg-cyan-400/[0.06] px-5 py-2 text-[10px] font-bold uppercase tracking-[0.3em] text-cyan-300">
+            Our Collection
+          </span>
 
-            {/* Image */}
-            <div className="relative flex h-64 items-center justify-center overflow-hidden rounded-2xl bg-white p-6">
+          <h1 className="text-4xl font-black tracking-tight text-white sm:text-5xl md:text-6xl">
+            Explore Our{" "}
 
-              <img
-                src={product.image}
-                alt={product.title}
-                className="h-full w-full object-contain transition duration-300 group-hover:scale-105"
-              />
+            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-violet-400 bg-clip-text text-transparent">
+              Products
+            </span>
+          </h1>
 
-              {/* Product Number */}
-              <span className="absolute left-3 top-3 rounded-full bg-slate-950 px-3 py-1 text-xs font-medium text-white">
-                #{product.id}
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/40 sm:text-base">
+            Discover premium products carefully selected for quality,
+            style and everyday performance.
+          </p>
+
+        </div>
+
+        {/* Loading */}
+        {loading && (
+          <div className="flex min-h-[300px] items-center justify-center">
+
+            <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.04] px-6 py-4 backdrop-blur-xl">
+
+              <div className="h-5 w-5 animate-spin rounded-full border-2 border-white/10 border-t-cyan-400" />
+
+              <span className="text-sm text-white/50">
+                Loading products...
               </span>
 
             </div>
 
+          </div>
+        )}
 
-            {/* Content */}
-            <div className="px-1 pb-1 pt-5">
+        {/* Products */}
+        {!loading && products.length > 0 && (
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 
-              <p className="mb-2 text-xs font-medium uppercase tracking-wider text-slate-500">
-                {product.category}
+            {products.map((product) => (
+              <Card
+                key={product.id}
+                product={product}
+              />
+            ))}
+
+          </div>
+        )}
+
+        {/* No Products */}
+        {!loading && products.length === 0 && (
+          <div className="flex min-h-[300px] items-center justify-center">
+
+            <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-8 py-6 text-center">
+
+              <p className="text-lg font-semibold text-white">
+                No products found
               </p>
 
-              <h2 className="line-clamp-2 min-h-[48px] text-base font-semibold leading-6 text-white">
-                {product.title}
-              </h2>
-
-
-              {/* Rating */}
-              <div className="mt-4 flex items-center gap-2">
-
-                <div className="flex items-center gap-1 rounded-lg bg-white/5 px-2.5 py-1.5">
-                  <span className="text-sm text-yellow-400">
-                    ★
-                  </span>
-
-                  <span className="text-xs font-medium text-slate-300">
-                    {product.rating?.rate || "4.5"}
-                  </span>
-                </div>
-
-                <span className="text-xs text-slate-500">
-                  ({product.rating?.count || 0} reviews)
-                </span>
-
-              </div>
-
-
-              {/* Price + Button */}
-              <div className="mt-5 flex items-center justify-between">
-
-                <div>
-                  <p className="text-xs text-slate-500">
-                    Price
-                  </p>
-
-                  <p className="text-xl font-bold text-white">
-                    ${product.price}
-                  </p>
-                </div>
-
-                <button
-                  className="rounded-xl bg-white px-4 py-2.5 text-xs font-semibold text-slate-950 transition-all duration-300 hover:bg-slate-200"
-                >
-                  View Product
-                </button>
-
-              </div>
+              <p className="mt-2 text-sm text-white/40">
+                Please try again later.
+              </p>
 
             </div>
 
           </div>
-
-        ))}
+        )}
 
       </div>
+    </section>
+  );
+};
 
-    </div>
-  )
-}
-
-export default ProductApis
-
+export default ProductApis;

@@ -1,14 +1,12 @@
-
 import React from "react";
 import ProductApis from "../components/product/ProductApis";
 
 const Product = () => {
   return (
-    <div>
+    <main>
       <ProductApis />
-    </div>
+    </main>
   );
 };
 
 export default Product;
-

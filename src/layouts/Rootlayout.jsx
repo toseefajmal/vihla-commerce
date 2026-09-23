@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../components/common/Navbar";
 import Footer from "../components/common/Footer";
 
-const Rootlayout = () => {
+const RootLayout = () => {
   return (
     <>
       <Navbar />
@@ -18,4 +18,4 @@ const Rootlayout = () => {
   );
 };
 
-export default Rootlayout;
+export default RootLayout;

@@ -1,10 +1,8 @@
 import React from 'react'
-
+import Hero from '../components/home/Hero'
 const Home = () => {
   return (
-    <div className="bg-green-800 text-white">
-      Home
-    </div>
+    <Hero />
   )
 }
 

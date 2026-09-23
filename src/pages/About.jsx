@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import AboutComponent from "../components/about/About";
 
 const About = () => {
   return (
-    <div className="bg-green-800 text-white">
-      About
-    </div>
-  )
-}
+    <main className="min-h-screen bg-[#050b14]">
+      <AboutComponent />
+    </main>
+  );
+};
 
-export default About
+export default About;
