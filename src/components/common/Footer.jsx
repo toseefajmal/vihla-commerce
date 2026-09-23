@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import {
@@ -14,7 +15,6 @@ import {
 const Footer = () => {
   return (
     <footer className="border-t border-white/[0.08] bg-[#050b14] text-white">
-
       {/* Main Footer */}
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-7 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
@@ -176,6 +176,7 @@ const Footer = () => {
                   <p className="text-xs text-slate-600">
                     Email
                   </p>
+
                   <p className="mt-1 text-sm text-slate-400">
                     support@vihla.com
                   </p>
@@ -191,6 +192,7 @@ const Footer = () => {
                   <p className="text-xs text-slate-600">
                     Phone
                   </p>
+
                   <p className="mt-1 text-sm text-slate-400">
                     +92 300 1234567
                   </p>
@@ -206,6 +208,7 @@ const Footer = () => {
                   <p className="text-xs text-slate-600">
                     Location
                   </p>
+
                   <p className="mt-1 text-sm text-slate-400">
                     Pakistan
                   </p>
@@ -289,3 +292,4 @@ const Footer = () => {
 };
 
 export default Footer;
+

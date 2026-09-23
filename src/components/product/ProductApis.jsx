@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
 
@@ -34,64 +35,136 @@ const ProductApis = () => {
   return (
     <section className="relative min-h-screen overflow-hidden bg-[#050507] px-4 py-24 text-white sm:px-6 lg:px-8">
 
-      {/* Background Glow */}
+      {/* Ambient Background */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -left-48 -top-40 h-[550px] w-[550px] rounded-full bg-cyan-500/[0.07] blur-[160px]" />
 
-        <div className="absolute -left-40 top-10 h-[450px] w-[450px] rounded-full bg-cyan-500/[0.08] blur-[140px]" />
+        <div className="absolute -right-48 top-[25%] h-[600px] w-[600px] rounded-full bg-violet-600/[0.07] blur-[170px]" />
 
-        <div className="absolute -right-40 top-1/3 h-[450px] w-[450px] rounded-full bg-violet-500/[0.08] blur-[140px]" />
-
-        <div className="absolute bottom-0 left-1/2 h-[350px] w-[500px] -translate-x-1/2 rounded-full bg-blue-500/[0.05] blur-[140px]" />
-
+        <div className="absolute bottom-[-200px] left-1/2 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-blue-600/[0.05] blur-[170px]" />
       </div>
 
-      {/* Grid Background */}
+      {/* Grid */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.025]"
         style={{
           backgroundImage:
             "linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)",
-          backgroundSize: "55px 55px",
+          backgroundSize: "60px 60px",
         }}
       />
 
+      {/* Top Shine */}
+      <div className="pointer-events-none absolute left-1/2 top-0 h-px w-[70%] -translate-x-1/2 bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
+
       <div className="relative z-10 mx-auto max-w-7xl">
 
-        {/* Heading */}
-        <div className="mx-auto mb-12 max-w-3xl text-center">
+        {/* Header */}
+        <div className="mx-auto max-w-4xl text-center">
 
-          <span className="mb-5 inline-flex items-center rounded-full border border-cyan-400/20 bg-cyan-400/[0.06] px-5 py-2 text-[10px] font-bold uppercase tracking-[0.3em] text-cyan-300">
-            Our Collection
-          </span>
+          {/* Badge */}
+          <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.035] px-5 py-2.5 shadow-[0_0_30px_rgba(34,211,238,0.04)] backdrop-blur-xl">
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.9)]" />
 
-          <h1 className="text-4xl font-black tracking-tight text-white sm:text-5xl md:text-6xl">
-            Explore Our{" "}
+            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/60">
+              Our Collection
+            </span>
 
-            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-violet-400 bg-clip-text text-transparent">
-              Products
+            <span className="text-[10px] text-white/20">✦</span>
+
+            <span className="text-[10px] font-semibold text-cyan-300/80">
+              Premium Selection
+            </span>
+          </div>
+
+          {/* Heading */}
+          <h1 className="text-4xl font-black leading-[1.05] tracking-[-0.04em] text-white sm:text-5xl md:text-6xl lg:text-7xl">
+            Discover Products
+            <br />
+
+            <span className="bg-gradient-to-r from-cyan-300 via-blue-400 to-violet-400 bg-clip-text text-transparent">
+              Made to Stand Out
             </span>
           </h1>
 
-          <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/40 sm:text-base">
-            Discover premium products carefully selected for quality,
-            style and everyday performance.
+          <p className="mx-auto mt-6 max-w-2xl text-sm leading-7 text-white/40 sm:text-base">
+            Explore a carefully curated collection of quality products
+            designed to bring style, comfort and performance into your
+            everyday life.
           </p>
 
         </div>
 
+        {/* Stats */}
+        {!loading && products.length > 0 && (
+          <div className="mx-auto mt-12 grid max-w-2xl grid-cols-3 overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.025] backdrop-blur-xl">
+
+            <div className="px-4 py-5 text-center">
+              <p className="text-xl font-black text-white sm:text-2xl">
+                {products.length}+
+              </p>
+
+              <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.2em] text-white/30 sm:text-[10px]">
+                Products
+              </p>
+            </div>
+
+            <div className="border-x border-white/[0.07] px-4 py-5 text-center">
+              <p className="text-xl font-black text-white sm:text-2xl">
+                100%
+              </p>
+
+              <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.2em] text-white/30 sm:text-[10px]">
+                Quality
+              </p>
+            </div>
+
+            <div className="px-4 py-5 text-center">
+              <p className="text-xl font-black text-white sm:text-2xl">
+                Premium
+              </p>
+
+              <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.2em] text-white/30 sm:text-[10px]">
+                Selection
+              </p>
+            </div>
+
+          </div>
+        )}
+
+        {/* Section Divider */}
+        <div className="my-14 flex items-center gap-5">
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/10 to-white/10" />
+
+          <div className="flex items-center gap-2">
+            <span className="h-1 w-1 rounded-full bg-cyan-400" />
+            <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/25">
+              Featured Collection
+            </span>
+            <span className="h-1 w-1 rounded-full bg-violet-400" />
+          </div>
+
+          <div className="h-px flex-1 bg-gradient-to-l from-transparent via-white/10 to-white/10" />
+        </div>
+
         {/* Loading */}
         {loading && (
-          <div className="flex min-h-[300px] items-center justify-center">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 
-            <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.04] px-6 py-4 backdrop-blur-xl">
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+              <div
+                key={item}
+                className="overflow-hidden rounded-3xl border border-white/[0.07] bg-white/[0.025] p-4"
+              >
+                <div className="h-64 animate-pulse rounded-2xl bg-white/[0.06]" />
 
-              <div className="h-5 w-5 animate-spin rounded-full border-2 border-white/10 border-t-cyan-400" />
+                <div className="mt-5 h-4 w-3/4 animate-pulse rounded-full bg-white/[0.06]" />
 
-              <span className="text-sm text-white/50">
-                Loading products...
-              </span>
+                <div className="mt-3 h-3 w-1/2 animate-pulse rounded-full bg-white/[0.04]" />
 
-            </div>
+                <div className="mt-6 h-10 animate-pulse rounded-xl bg-white/[0.05]" />
+              </div>
+            ))}
 
           </div>
         )}
@@ -112,17 +185,30 @@ const ProductApis = () => {
 
         {/* No Products */}
         {!loading && products.length === 0 && (
-          <div className="flex min-h-[300px] items-center justify-center">
+          <div className="flex min-h-[350px] items-center justify-center">
 
-            <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-8 py-6 text-center">
+            <div className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.035] px-10 py-10 text-center shadow-2xl backdrop-blur-xl">
 
-              <p className="text-lg font-semibold text-white">
-                No products found
+              <div className="absolute left-1/2 top-0 h-px w-1/2 -translate-x-1/2 bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent" />
+
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.05]">
+                <span className="text-xl text-white/50">×</span>
+              </div>
+
+              <p className="mt-5 text-lg font-bold text-white">
+                No Products Found
               </p>
 
-              <p className="mt-2 text-sm text-white/40">
+              <p className="mt-2 text-sm text-white/35">
                 Please try again later.
               </p>
+
+              <button
+                onClick={handleProducts}
+                className="mt-6 rounded-xl border border-cyan-400/20 bg-cyan-400/[0.07] px-5 py-2.5 text-xs font-bold text-cyan-300 transition hover:border-cyan-400/40 hover:bg-cyan-400/[0.12]"
+              >
+                Try Again
+              </button>
 
             </div>
 
